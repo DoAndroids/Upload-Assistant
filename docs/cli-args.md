@@ -116,7 +116,7 @@ Note: if a manual TMDb or IMDb id is present in the incoming `meta` before parsi
 - `-kf`, `--keep-folder`: Keep the folder containing the single file (only when supplying a directory).
 - `-knfo`, `--keep-nfo`: Keep nfo file where applicable for specific tracker/s. With single files, must be used in conjunction with `--keep-folder` above.
 - `-reg`, `--region REGION`: Region for discs.
--- `-name`: Override the name of the upload. This is for use cases where the TVDB / IMDB titles are not quite what is needed. 
+- `--name`: Override the name of the upload. This is for use cases where the TVDB / IMDB titles are not quite what is needed. 
 
 ## Tracker-specific references (existing torrent ids/links)
 
