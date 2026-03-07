@@ -483,6 +483,10 @@ async def process_meta(meta: Meta, base_dir: str, bot: Any = None) -> None:
                     meta['trackers'].remove(tracker)
 
         meta['name_notag'], meta['name'], meta['clean_name'], meta['potential_missing'] = await name_manager.get_name(meta)
+        if meta.get('manual_name'):
+            meta['name'] = meta['manual_name']
+            meta['name_notag'] = meta['manual_name']
+            meta['clean_name'] = await name_manager.clean_filename(meta['manual_name'])
 
         if meta['debug']:
             console.print(f"Trackers list before editing: {meta['trackers']}")
@@ -560,6 +564,10 @@ async def process_meta(meta: Meta, base_dir: str, bot: Any = None) -> None:
         meta['edit'] = True
         meta = await prep.gather_prep(meta=meta, mode='cli')
         meta['name_notag'], meta['name'], meta['clean_name'], meta['potential_missing'] = await name_manager.get_name(meta)
+        if meta.get('manual_name'):
+            meta['name'] = meta['manual_name']
+            meta['name_notag'] = meta['manual_name']
+            meta['clean_name'] = await name_manager.clean_filename(meta['manual_name'])
         try:
             confirm = await helper.get_confirmation(meta)
         except EOFError:

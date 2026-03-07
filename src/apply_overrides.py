@@ -176,6 +176,15 @@ class ApplyOverrides:
                             modified_keys.append(related_key)
                             if meta['debug']:
                                 console.print(f"[Debug] Override: {related_key} changed from {meta.get(related_key)} to {value}")
+                # Handle name override — store as manual_name so it survives get_name()
+                elif key == 'name':
+                    name_value = updated_meta.get('manual_name')
+                    if name_value is not None:
+                        old_value = meta.get('manual_name')
+                        meta['manual_name'] = name_value
+                        modified_keys.append('manual_name')
+                        if meta['debug']:
+                            console.print(f"[Debug] Override: manual_name set from {old_value} to {name_value}")
                 # Handle regular fields
                 elif key in updated_meta and key in meta:
                     # Skip path to preserve original
